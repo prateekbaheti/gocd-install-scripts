@@ -2,18 +2,18 @@ $ErrorActionPreference = 'Stop';
 
 function Wait-For-Agent-Installation
 {
- $tries = 180
- Write-Host "Waiting $tries seconds for GoAgent service to install"
+ $tries = 180;
+ Write-Host "Waiting $tries seconds for GoAgent service to install";
  do {
-  $tries--
+  $tries--;
   try {
-    Get-Service "Go Agent"
+    Get-Service "Go Agent";
     return
     } catch {
-      sleep -Milliseconds 1000
+      sleep -Milliseconds 1000;
     }
   } until ($tries -eq 0)
-  throw "Go Agent was not install after 180 seconds"
+  throw "Go Agent was not install after 180 seconds";
 }
 
 if ($args.length -lt 5) {
@@ -44,9 +44,9 @@ Invoke-expression $install_cmd;
 Wait-For-Agent-Installation;
 
 Write-Host "Adding autoregister.properties file"
-$file_content = "agent.auto.register.key=$autoregister_key`n
-agent.auto.register.environments=$environment`n
-agent.auto.register.elasticAgent.pluginId=$plugin_id`n
+$file_content = "agent.auto.register.key=$autoregister_key`r`n
+agent.auto.register.environments=$environment`r`n
+agent.auto.register.elasticAgent.pluginId=$plugin_id`r`n
 agent.auto.register.elasticAgent.agentId=$agent_id";
 
 $file_content | Out-File "$install_dir\config\autoregister.properties";
