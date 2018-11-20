@@ -47,9 +47,9 @@ Write-Host "Adding autoregister.properties file"
 $file_content = "agent.auto.register.key=$autoregister_key`r`n
 agent.auto.register.environments=$environment`r`n
 agent.auto.register.elasticAgent.pluginId=$plugin_id`r`n
-agent.auto.register.elasticAgent.agentId=$agent_id";
+agent.auto.register.elasticAgent.agentId=$agent_id`r`n";
 
-$file_content | Out-File "$install_dir\config\autoregister.properties";
+$file_content | Out-File -FilePath "$install_dir\config\autoregister.properties" -Encoding UTF8;
 
 Write-Host "Starting go-agent...";
 Start-service "Go Agent";
