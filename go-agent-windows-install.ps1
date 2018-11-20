@@ -14,7 +14,7 @@ function Wait-For-Agent-Installation
     }
   } until ($tries -eq 0)
   throw "Go Agent was not install after 180 seconds"
-} 
+}
 
 if ($args.length -lt 5) {
   throw "Must have 5/6 args: server_url server_version autoregister_key plugin_id agent_id environment"
@@ -33,14 +33,14 @@ Write-Host "Disabling User Access Control"
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLUA" -Value "0"
 
 Write-Host "Installing go-agent using command: $install_cmd"
-Invoke-expression $install_cmd 
+Invoke-expression $install_cmd
 
 Wait-For-Agent-Installation
 
 Write-Host "Adding autoregister.properties file"
-$file_content = "agent.auto.register.key=$autoregister_key
-agent.auto.register.environments=$environment
-agent.auto.register.elasticAgent.pluginId=$plugin_id
+$file_content = "agent.auto.register.key=$autoregister_key`
+agent.auto.register.environments=$environment`
+agent.auto.register.elasticAgent.pluginId=$plugin_id`
 agent.auto.register.elasticAgent.agentId=$agent_id"
 
 $file_content | Out-File "$install_dir\config\autoregister.properties"
