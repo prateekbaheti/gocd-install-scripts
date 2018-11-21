@@ -44,9 +44,9 @@ Invoke-expression $install_cmd;
 Wait-For-Agent-Installation;
 
 Write-Host "Adding autoregister.properties file"
-$file_content = "agent.auto.register.key=$autoregister_key`n
-agent.auto.register.environments=$environment`n
-agent.auto.register.elasticAgent.pluginId=$plugin_id`n
+$file_content = "`r`nagent.auto.register.key=$autoregister_key`r`n
+agent.auto.register.environments=$environment`r`n
+agent.auto.register.elasticAgent.pluginId=$plugin_id`r`n
 agent.auto.register.elasticAgent.agentId=$agent_id";
 
 [System.IO.File]::WriteAllLines("$install_dir\config\autoregister.properties", $file_content)
