@@ -50,6 +50,3 @@ agent.auto.register.elasticAgent.pluginId=$plugin_id`r`n
 agent.auto.register.elasticAgent.agentId=$agent_id";
 
 [System.IO.File]::WriteAllLines("$install_dir\config\autoregister.properties", $file_content)
-
-Write-Host "Starting go-agent...";
-Start-service "Go Agent";
