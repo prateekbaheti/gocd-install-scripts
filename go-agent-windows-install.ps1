@@ -1,3 +1,14 @@
+Param(
+    [Parameter(Position=0, Mandatory=$True)] [string]$server_url,
+    [Parameter(Position=1, Mandatory=$True)] [string]$server_version,
+    [Parameter(Position=2, Mandatory=$True)] [string]$autoregister_key,
+    [Parameter(Position=3, Mandatory=$True)] [string]$plugin_id,
+    [Parameter(Position=4, Mandatory=$True)] [string]$agent_id,
+    [Parameter(Position=5)] [string]$environment,
+    [Parameter(Position=6)] [string]$username,
+    [Parameter(Position=7)] [string]$password
+)
+
 $ErrorActionPreference = 'Stop';
 
 function Wait-For-Agent-Installation
@@ -15,19 +26,6 @@ function Wait-For-Agent-Installation
   } until ($tries -eq 0)
   throw "Go Agent was not install after 180 seconds";
 }
-
-if ($args.length -lt 5) {
-  throw "Must have 5/8 args: server_url server_version autoregister_key plugin_id agent_id username password environment";
-}
-
-$server_url = $args[0];
-$server_version = $args[1];
-$autoregister_key= $args[2];
-$plugin_id = $args[3];
-$agent_id = $args[4];
-$username = $args[5];
-$password = $args[6];
-$environment = $args[7];
 
 Write-Host "server_url: $server_url";
 Write-Host "server_version: $server_version";
