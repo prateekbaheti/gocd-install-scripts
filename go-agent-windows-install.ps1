@@ -4,7 +4,7 @@ Param(
     [Parameter(Position=2, Mandatory=$True)] [string]$autoregister_key,
     [Parameter(Position=3, Mandatory=$True)] [string]$plugin_id,
     [Parameter(Position=4, Mandatory=$True)] [string]$agent_id,
-    [Parameter(Position=5)] [string]$environment,
+    [Parameter(Position=5)] [string]$environment = "",
     [Parameter(Position=6)] [string]$username,
     [Parameter(Position=7)] [string]$password
 )
