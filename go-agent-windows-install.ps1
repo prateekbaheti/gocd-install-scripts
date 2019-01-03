@@ -46,7 +46,7 @@ Wait-For-Agent-Installation;
 if ($username -and $password) {
   Write-Host "Changing service to run as user: $username"
   $Svc = Get-WmiObject win32_service -filter "name='Go Agent'"
-  $Svc.Change($Null, $Null, $Null, $Null, $Null, $false, ".\$username", $password)
+  $Svc.Change($Null, $Null, $Null, $Null, $Null, $false, ".\$username", $password, $Null, $Null, $Null)
 }
 Write-Host "Adding autoregister.properties file"
 $file_content = "`r`nagent.auto.register.key=$autoregister_key`r`n
